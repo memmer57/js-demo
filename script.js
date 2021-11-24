@@ -57,3 +57,37 @@ const myChart = new Chart(
     document.getElementById('covid-graph'),
     config
 );
+
+
+document.querySelector('.click-me').onclick = () => {
+    const instance = basicLightbox.create(`
+    <div class="modal">
+        <p style="color: white; font-size: 1.5rem;">
+            This is a javascript demo
+        </p>
+    </div>
+    `)
+    instance.show()
+}
+
+
+var center = SMap.Coords.fromWGS84(15.0674736, 50.7741758);
+var m = new SMap(JAK.gel("m"), center, 15);
+m.addDefaultLayer(SMap.DEF_BASE).enable();
+m.addDefaultControls();
+
+var layer = new SMap.Layer.Marker();
+m.addLayer(layer);
+layer.enable();
+
+
+var card = new SMap.Card();
+card.getHeader().innerHTML = "<strong>Odběrové místo</strong>";
+card.getBody().innerHTML = "Odběrové místo";
+
+var options = { 
+    title: "Odběrové místo"
+};
+var marker = new SMap.Marker(center, "myMarker", options);
+marker.decorate(SMap.Marker.Feature.Card, card);
+layer.addMarker(marker);
